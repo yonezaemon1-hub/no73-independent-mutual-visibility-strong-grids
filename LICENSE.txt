@@ -1,0 +1,6 @@
+Copyright (c) 2026 Ryutaro Yonezu. All rights reserved.
+
+These research and reproducibility files are made available for reading and
+evaluation. No Creative Commons or open-source license, permission to
+redistribute, modify, or reuse the files, or waiver of rights is granted.
+For permissions, contact the author through an authorized channel.

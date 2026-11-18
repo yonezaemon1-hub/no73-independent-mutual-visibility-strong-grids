@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this preprint, please cite this research record."
+title: "Exact Independent Mutual-Visibility Chromatic Numbers of Strong Grid Graphs"
+authors:
+  - family-names: Yonezu
+    given-names: Ryutaro
+version: "1.0"
+abstract: "An exact independent mutual-visibility chromatic number for strong path grids, with a documented independent AI audit and finite reproduction checks."
+keywords:
+  - strong product graph
+  - independent mutual-visibility
+  - graph coloring
+  - grid graph

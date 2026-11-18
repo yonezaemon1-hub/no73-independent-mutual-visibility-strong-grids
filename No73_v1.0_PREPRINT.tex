@@ -1,0 +1,306 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Exact Independent Mutual-Visibility Chromatic Numbers of Strong Grid Graphs},
+  pdfauthor={Ryutaro Yonezu --- Independent Researcher},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Exact Independent Mutual-Visibility Chromatic Numbers of Strong
+Grid Graphs}
+\author{Ryutaro Yonezu --- Independent Researcher}
+\date{18 November 2026}
+
+\begin{document}
+\maketitle
+
+\textbf{Research No.73 · v1.0 · Unrefereed preprint.} Independent AI
+audit: PASS (author-provided report); author Windows verification: PASS
+(author-provided report). Human peer review and formal proof-assistant
+verification: NOT PERFORMED. NOVELTY INCONCLUSIVE; REFERENCES PARTIAL.
+
+\subsection{Abstract}\label{abstract}
+
+For integers \(t\ge r\ge3\), we establish the exact value
+\(\chi_{\mu_i}(P_t\boxtimes P_r)=\max\{4,\lceil r/2\rceil\}\) by an
+explicit column coloring. Brešar, Peterin, Samadi and Yero (2026)
+established the lower bound and equality for widths divisible by four
+and widths three through seven. Their even-palette construction is
+retained here. An odd-palette construction together with a general
+geodesic lemma handles the remaining widths. The analytical argument
+does not depend on finite computation. Historical novelty is
+inconclusive; the independent AI audit reports a mathematical PASS
+within its stated scope. Human peer review and formal proof-assistant
+verification have not been performed.
+
+\subsection{1. Definitions and lower
+bound}\label{definitions-and-lower-bound}
+
+Let \(G_{t,r}=P_t\boxtimes P_r\) have vertices \((i,j)\), \(0\le i<t\),
+\(0\le j<r\). Distinct vertices are adjacent if the maximum of the two
+absolute coordinate differences is one. The distance between \((i,j)\)
+and \((I,J)\) is \(\max(|i-I|,|j-J|)\): each step changes either
+coordinate by at most one, and taking diagonal steps followed by
+axis-parallel steps attains this bound inside the rectangle.
+
+An independent mutual-visibility (IMV) set \(S\) is independent and each
+pair of distinct vertices in \(S\) admits a shortest path with no
+internal vertex in \(S\). The IMV chromatic number is the minimum number
+of such sets partitioning the vertex set.
+
+\textbf{Theorem 1 (main claim).} For every integer \(t\ge r\ge3\),
+
+\[\chi_{\mu_i}(G_{t,r})=\max\{4,\lceil r/2\rceil\}.\]
+
+The lower bound is known from {[}1, Theorem 27{]}. For completeness, a
+\(2\times2\) subgrid is a clique of size four. The diagonal
+\(\{(j,j):0\le j<r\}\) has at most two vertices of any single IMV color,
+because the unique geodesic joining any two of its vertices uses all
+intermediate diagonal vertices: for endpoints \((a,a)\) and \((b,b)\),
+\(a<b\), each of the \(b-a\) steps must increase both coordinates by
+one. Three vertices of one color would therefore violate mutual
+visibility. Counting diagonal vertices proves the other lower bound
+\(\lceil r/2\rceil\).
+
+\subsection{2. A column-phase lemma}\label{a-column-phase-lemma}
+
+Write \(p(i,j)=(i+j)\bmod2\). Suppose \(t,r\ge2\) and a subset \(S\) of
+\(G_{t,r}\) has the following properties:
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\item
+  the columns containing members of \(S\) are pairwise nonconsecutive;
+\item
+  in every such column \(j\), membership in \(S\) is precisely
+  \(p(i,j)=p_j\), for one fixed bit \(p_j\);
+\item
+  the phase word of occupied columns in increasing order is a
+  subsequence (not necessarily contiguous) of \((A,B,B,A)\), where
+  \(A,B\in\{0,1\}\) and \(A\ne B\).
+\end{enumerate}
+
+\textbf{Lemma 2.} Under (i)--(iii), \(S\) is an IMV set.
+
+Proof. Independence follows from (i) and (ii). For any two distinct
+vertices of \(S\), write their absolute row and column differences as
+\(h,d\).
+
+If \(d=0\), then \(h\ge2\) by independence. Choose an adjacent column
+within the grid; it is unoccupied by (i). Step diagonally into that
+column toward the target row, walk vertically until one row before the
+target, then step diagonally into the target. This path has exactly
+\(h\) steps, and all its internal vertices are outside \(S\).
+
+If \(d>0\), then \(d\ge2\). Condition (iii) implies that the endpoints
+may be oriented so that the phase of the starting vertex differs from
+the phase of every occupied column strictly between them. To see this,
+examine their two indices in the parent four-letter word: consecutive
+indices have no intervening letter; indices (1,3) and (2,4) have
+intervening letter B and an endpoint A; indices (1,4) have two
+intervening B's and endpoints A. Restricting to a subsequence cannot
+create any new intervening letter. Reverse the endpoints if needed.
+Write the resulting start as \((i,j)\) and target as \((I,J)\); set
+\(u=\operatorname{sgn}(I-i)\), \(v=\operatorname{sgn}(J-j)\) (with
+\(\operatorname{sgn}(0)=0\)). Every diagonal step preserves \(p\). Thus
+any diagonal segment from the start through strictly intervening columns
+avoids \(S\).
+
+If \(h\ge d\), take \(d-1\) steps of displacement \((u,v)\), then
+\(h-d\) steps of displacement \((u,0)\), then one step \((u,v)\) to the
+target. The penultimate column \(J-v\) contains no member of \(S\) by
+(i) because \(J\) is occupied. The initial diagonal segment avoids \(S\)
+by the orientation above; the vertical segment remains in the unoccupied
+column. All coordinates stay between the respective endpoint
+coordinates. The path has length \(h\).
+
+If \(h<d\), start with \(h\) steps \((u,v)\) and follow with \(d-h\)
+horizontal steps \((0,v)\). If \(h=0\), the initial segment consists of
+the start alone. Every internal vertex of the diagonal segment avoids
+\(S\). For each internal vertex on the horizontal tail that lies in
+\(S\) (thus strictly after step \(h\) and before step \(d\)), replace
+its row \(I\) by an adjacent row inside the grid: \(I+1\) if \(I+1<t\),
+otherwise \(I-1\). This flips its phase, hence removes it from \(S\) by
+(ii). The changed columns are pairwise nonconsecutive by (i). Each
+changed vertex therefore has its preceding and following vertices
+unchanged and in row \(I\); this includes the interface vertex at step
+\(h\) and the final endpoint. Their row differences are at most one and
+column differences exactly one. No length or adjacency is lost. The
+resulting \(d\)-step path stays inside the grid and avoids \(S\)
+internally. It is a geodesic. This proves the lemma. QED.
+
+\subsection{3. Explicit constructions}\label{explicit-constructions}
+
+Set \(q=\max\{4,\lceil r/2\rceil\}\), so \(r\le2q\). Define a coloring
+by a formula on the columns \(0,\dots,2q-1\), then retain only columns
+\(0,\dots,r-1\) and all \(t\) rows. The proof will apply the lemma
+directly to the smaller rectangle; it does not assume arbitrary
+rectangular restrictions preserve mutual visibility.
+
+\subsubsection{3.1 Odd palette}\label{odd-palette}
+
+Suppose \(q\) is odd, so \(q\ge5\). Use the colors \(0,\dots,q-1\) and
+put
+
+\[c(i,j)=\bigl(2j+((i+j+\lfloor j/q\rfloor)\bmod2)\bigr)\bmod q.\]
+
+A column has exactly the two possible colors \(\{2j,2j+1\}\pmod q\),
+alternating with the row. Two consecutive columns have disjoint color
+pairs: their four residues are consecutive modulo \(q\) and \(q\ge5\).
+This verifies (i), and the alternating rows verify (ii).
+
+Fix a color \(z\). Multiplication by two is invertible modulo odd \(q\),
+so there are distinct representatives \(a,b\in\{0,\dots,q-1\}\) with
+\(2a\equiv z\) and \(2b+1\equiv z\pmod q\). In the full \(2q\) columns,
+precisely \(a,b,a+q,b+q\) contain \(z\). At \(a\) the phase is zero and
+at \(b\) it is one; at \(a+q\) the phase is one and at \(b+q\) it is
+zero, because the block flag \(\lfloor j/q\rfloor\) changes from zero to
+one. If \(a<b\) the ordered word is \(0,1,1,0\); if \(b<a\) it is
+\(1,0,0,1\). In either case (iii) holds. Removing a suffix of columns
+preserves (i)--(iii). By Lemma 2, each color class is an IMV set.
+
+\subsubsection{3.2 Even palette (known
+pattern)}\label{even-palette-known-pattern}
+
+If \(q=2k\) is even, \(k\ge2\). Use
+
+\[c(i,j)=2(j\bmod k)+((i+j+\epsilon_j)\bmod2),\]
+
+where \(\epsilon_j=1\) for \(k\le j<3k\) and zero otherwise. For each
+\(a\in\{0,\dots,k-1\}\) the colors \(2a,2a+1\) occupy the four columns
+\(a,a+k,a+2k,a+3k\) in the full width. Their phases are respectively
+\(0,1,1,0\) and \(1,0,0,1\). These columns are separated by at least
+two. Alternating row membership and retained column prefixes meet the
+lemma's hypotheses. This formula restates the known even-palette pattern
+from {[}1, Theorem 28{]}, with the present lemma establishing the
+restriction directly.
+
+Both cases yield an IMV coloring using at most \(q\) colors. Combined
+with the lower bound, this proves Theorem 1. QED.
+
+\subsection{4. Claim boundaries and
+context}\label{claim-boundaries-and-context}
+
+The lower bound, the even-palette full-width construction, and its phase
+organization originate in {[}1{]}. The proposed contribution is the
+odd-palette construction and a common geodesic argument for all widths,
+including the justified restriction of the even construction. {[}1,
+Theorem 28{]} explicitly covers \(t\ge4k\ge8\) and
+\(t\ge r\in\{3,4,5,6,7\}\). The remaining widths in the stated range are
+\(r\ge9\) with \(r\not\equiv0\pmod4\); the odd-palette widths
+\(4k+1,4k+2\) (\(k\ge2\)) are the main target. Width \(4k+3\)
+(\(k\ge2\)) is handled by the restriction argument for an even palette,
+also when \(t=r\).
+
+{[}2, Sections 1 and 6{]} explicitly separates independent
+mutual-visibility coloring from total, outer and dual mutual-visibility
+coloring and focuses on the latter parameters for strong grids. Its
+equation (8) concerns ordinary MV coloring, without the independence
+requirement. {[}3{]} studies a distance bound on mutual visibility, not
+independence. These comparisons do not establish historical priority.
+The literature search is targeted, not exhaustive (REFERENCES PARTIAL;
+NOVELTY INCONCLUSIVE).
+
+\subsection{5. Computational evidence (not used in
+proof)}\label{computational-evidence-not-used-in-proof}
+
+The accompanying standard-library Python scripts test the construction.
+\texttt{verify\_paths.py} checks every same-color pair in 78 grids
+(widths 3 through 28; heights r, r+1 and r+5), including independence,
+path length, adjacency, boundaries and internal color avoidance.
+\texttt{verify\_bfs.py} reconstructs the row-color table separately and
+performs a graph BFS from each source, recording distances to same-color
+terminal vertices without expanding them. This checks every same-color
+pair in 40 grids (widths 3 through 22; heights r and r+3), plus proper
+coloring along every edge. The implementations are separate but
+developed in the same session and are not an external independent audit.
+Local Linux reruns passed for 573,778 and 145,194 pairs respectively
+(overlapping domains; do not add as a count of distinct pairs). No
+finite test substitutes for the all-parameter proof. The author reports
+Windows PowerShell PASS for the frozen v0.1 package. The author-provided
+independent AI audit reports MODEL, LOWER, LEMMA, ODD, EVEN,
+RESTRICTION, THEOREM, COMPUTATION and PACKAGE PASS. External C++ source
+and raw logs were not supplied and were not independently rerun here.
+
+\subsection{References}\label{references}
+
+{[}1{]} B. Brešar, I. Peterin, B. Samadi, I. G. Yero, \emph{Independent
+mutual-visibility coloring and related concepts}, Aequationes
+Mathematicae 100 (2026), article 48. DOI:
+https://doi.org/10.1007/s00010-026-01280-y . Theorems 27--28, publisher
+HTML inspected 2026-11-18. Preprint: https://arxiv.org/abs/2505.04144 .
+
+{[}2{]} S. Babu, M. Jakovac, D. Kuziak, A. Lakshmanan S., I. G. Yero,
+\emph{A variety of the mutual-visibility coloring problem for graphs},
+arXiv:2609.31427 (2026-09-25). https://arxiv.org/abs/2609.31427 .
+Sections 1, 3 and 6 inspected in retrieved text, 2026-11-18.
+
+{[}3{]} S. Babu, B. Brešar, A. Lakshmanan S., B. Samadi, \emph{Distance
+mutual-visibility coloring: relations with (total) domination, exact
+distance graphs and graph products}, arXiv:2510.10284 (2025).
+https://arxiv.org/abs/2510.10284 . Abstract and Sections 1 and 5
+inspected in the original arXiv HTML, 2026-11-18; broader literature
+coverage remains partial.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+AI-assisted preprint. Independent AI audit: PASS (author-provided scoped
+report). Windows: PASS (author-provided report for frozen v0.1). Human
+peer review: NOT PERFORMED. Formal proof-assistant verification: NOT
+PERFORMED. NOVELTY INCONCLUSIVE; REFERENCES PARTIAL. Copyright (c) 2026
+Ryutaro Yonezu. All rights reserved.
+
+\end{document}
